@@ -21,6 +21,7 @@ import { VIEWS_WEEKS_PATH } from "../../utils/VIEWS_WEEKS_PATH";
 import { getNextWeekID } from "./getNextWeekID";
 import { getPDFURL } from "./getPDFURL";
 import * as jetpack from "fs-jetpack";
+import { jsonStringify } from "../../utils/jsonStringify";
 
 export const syncExtractedWeekTopic = async (
   extractedWeekTopic: IExtractedForumTopic
@@ -132,16 +133,17 @@ export const syncExtractedWeekTopic = async (
       })
     );
 
-    await Promise.all([
-      jetpack.writeAsync(join(WEEK_CLASS_PATH, "data.json"), {
+    await jetpack.writeAsync(
+      join(WEEK_CLASS_PATH, "data.json"),
+      jsonStringify({
         week,
         klass,
         items: classWeekItemsView,
-      }),
-    ]);
+      })
+    );
   }
 
-  jetpack.write(join(WEEK_CLASSES_PATH, "data.json"), classes);
+  jetpack.write(join(WEEK_CLASSES_PATH, "data.json"), jsonStringify(classes));
 
   const teachers = await TeacherRepository.find({ relations: ["slugs"] });
 
@@ -170,14 +172,15 @@ export const syncExtractedWeekTopic = async (
       })
     );
 
-    await Promise.all([
-      jetpack.writeAsync(join(WEEK_TEACHER_PATH, "data.json"), {
+    await jetpack.writeAsync(
+      join(WEEK_TEACHER_PATH, "data.json"),
+      jsonStringify({
         week,
         teacher,
         items: teacherWeekItemsView,
-      }),
-    ]);
+      })
+    );
   }
 
-  jetpack.write(join(WEEK_TEACHERS_PATH, "data.json"), teachers);
+  jetpack.write(join(WEEK_TEACHERS_PATH, "data.json"), jsonStringify(teachers));
 };
