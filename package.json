@@ -1,0 +1,30 @@
+{
+  "name": "@horarios-ifro/data-service-data-v2",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node ./dist/main.ts",
+    "build": "yarn clear && tsc -p .",
+    "clear": "rimraf dist",
+    "dev:run": "ts-node src/main.ts",
+    "format": "prettier . --ignore-unknown --write"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.1",
+    "@types/rimraf": "^3.0.2",
+    "@types/ungap__structured-clone": "^0.3.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@horarios-ifro/extractors": "../horarios-ifro-extractors",
+    "@ungap/structured-clone": "^1.0.1",
+    "fs-jetpack": "^4.3.1",
+    "isomorphic-fetch": "^3.0.0",
+    "rimraf": "^3.0.2",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.11",
+    "typeorm": "^0.3.7"
+  }
+}
