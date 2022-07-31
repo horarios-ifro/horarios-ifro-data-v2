@@ -7,6 +7,7 @@ import { VIEWS_WEEKS_PATH } from "./utils/VIEWS_WEEKS_PATH";
 import { ClassRepository } from "./services/database/repositories/class.repository";
 import { WeekDayItemRepository } from "./services/database/repositories/week-day-item.repository";
 import { TeacherRepository } from "./services/database/repositories/teacher.repository";
+import { sortTeachers } from "./utils/sortTeachers";
 
 export const syncViews = async () => {
   await jetpack.removeAsync(VIEWS_PATH);
@@ -65,13 +66,9 @@ export const syncViews = async () => {
 
     jetpack.write(join(WEEK_CLASSES_PATH, "data.json"), jsonStringify(classes));
 
-    const teachers = await TeacherRepository.find({
-      relations: ["slugs"],
-    }).then((teachers) =>
-      teachers.sort((a, b) => {
-        const aName = a.fullName ?? a.slugs[0].slug;
-        const bName = b.fullName ?? b.slugs[0].slug;
-        return aName.localeCompare(bName);
+    const teachers = sortTeachers(
+      await TeacherRepository.find({
+        relations: ["slugs"],
       })
     );
 
