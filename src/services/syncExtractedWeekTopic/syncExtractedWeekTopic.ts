@@ -16,12 +16,8 @@ import { WeekDayItemRepository } from "../database/repositories/week-day-item.re
 import { TeacherRepository } from "../database/repositories/teacher.repository";
 import { SubjectRepository } from "../database/repositories/subject.repository";
 import { ClassRepository } from "../database/repositories/class.repository";
-import { join } from "path";
-import { VIEWS_WEEKS_PATH } from "../../utils/VIEWS_WEEKS_PATH";
 import { getNextWeekID } from "./getNextWeekID";
 import { getPDFURL } from "./getPDFURL";
-import * as jetpack from "fs-jetpack";
-import { jsonStringify } from "../../utils/jsonStringify";
 
 export const syncExtractedWeekTopic = async (
   extractedWeekTopic: IExtractedForumTopic
@@ -98,89 +94,4 @@ export const syncExtractedWeekTopic = async (
       await WeekDayItemRepository.save(weekDayItem);
     }
   }
-
-  const WEEK_PATH = join(VIEWS_WEEKS_PATH, week.id);
-
-  await jetpack.removeAsync(WEEK_PATH);
-
-  const WEEK_CLASSES_PATH = join(WEEK_PATH, "classes");
-  const WEEK_TEACHERS_PATH = join(WEEK_PATH, "teachers");
-
-  const classes = await ClassRepository.find();
-
-  for (const klass of classes) {
-    const WEEK_CLASS_PATH = join(WEEK_CLASSES_PATH, klass.id);
-
-    const classWeekItems = await WeekDayItemRepository.findByClassAndWeek(
-      klass.id,
-      week.id
-    );
-
-    const classWeekItemsView = classWeekItems.map(
-      ({
-        id,
-        order,
-        weekDay: { weekDayOrder, absoluteDay },
-        subject,
-        teacher,
-      }) => ({
-        id,
-        order,
-        subject,
-        teacher,
-        weekDayOrder,
-        absoluteDay: absoluteDay.getTime(),
-      })
-    );
-
-    await jetpack.writeAsync(
-      join(WEEK_CLASS_PATH, "data.json"),
-      jsonStringify({
-        week,
-        klass,
-        items: classWeekItemsView,
-      })
-    );
-  }
-
-  jetpack.write(join(WEEK_CLASSES_PATH, "data.json"), jsonStringify(classes));
-
-  const teachers = await TeacherRepository.find({ relations: ["slugs"] });
-
-  for (const teacher of teachers) {
-    const WEEK_TEACHER_PATH = join(WEEK_TEACHERS_PATH, teacher.id);
-
-    const teacherWeekItems = await WeekDayItemRepository.findByTeacherAndWeek(
-      teacher.id,
-      week.id
-    );
-
-    const teacherWeekItemsView = teacherWeekItems.map(
-      ({
-        id,
-        order,
-        weekDay: { weekDayOrder, absoluteDay },
-        subject,
-        klass,
-      }) => ({
-        id,
-        order,
-        klass,
-        subject,
-        weekDayOrder,
-        absoluteDay: absoluteDay.getTime(),
-      })
-    );
-
-    await jetpack.writeAsync(
-      join(WEEK_TEACHER_PATH, "data.json"),
-      jsonStringify({
-        week,
-        teacher,
-        items: teacherWeekItemsView,
-      })
-    );
-  }
-
-  jetpack.write(join(WEEK_TEACHERS_PATH, "data.json"), jsonStringify(teachers));
 };
