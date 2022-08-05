@@ -1,4 +1,4 @@
-import { startDatabase } from "./services/database/AppDataSource";
+import {startDatabase, stopDatabase} from "./services/database/AppDataSource";
 import { syncExtractedWeekTopic } from "./services/syncExtractedWeekTopic/syncExtractedWeekTopic";
 import "./utils/polyfills";
 import { getNewWeekTopics } from "./getNewWeekTopics";
@@ -15,6 +15,8 @@ async function main() {
   }
 
   await syncViews();
+
+  await stopDatabase();
 }
 
 main().then(() => console.log("done."));

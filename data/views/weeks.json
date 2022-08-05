@@ -1,1 +1,29 @@
-[{"id":"0001","link":"https://virtual.ifro.edu.br/jiparana/mod/forum/discuss.php?d=19464","title":"HORÁRIO SEMANAL DO TÉCNICO - 25/07 A 30/07/2022","pdfURL":"https://virtual.ifro.edu.br/jiparana/pluginfile.php/50/mod_forum/post/48024/Hor%C3%A1rio%2025%20a%2030%20de%20julho%20%281%29.pdf","publishedAt":"2022-07-22T17:35:40.000Z","startsAt":"2022-07-25T04:00:00.000Z","endsAt":"2022-07-31T03:59:00.000Z"},{"id":"0002","link":"https://virtual.ifro.edu.br/jiparana/mod/forum/discuss.php?d=19472","title":"HORÁRIO SEMANAL DO TÉCNICO - 01 A 06/08/2022","pdfURL":"https://virtual.ifro.edu.br/jiparana/pluginfile.php/50/mod_forum/post/48032/Hor%C3%A1rio%2001%20a%2006%20de%20agosto.pdf","publishedAt":"2022-07-30T14:16:46.000Z","startsAt":"2022-08-01T04:00:00.000Z","endsAt":"2022-08-07T03:59:00.000Z"}]
+[
+  {
+    "id": "0001",
+    "link": "https://virtual.ifro.edu.br/jiparana/mod/forum/discuss.php?d=19464",
+    "title": "HORÁRIO SEMANAL DO TÉCNICO - 25/07 A 30/07/2022",
+    "pdfURL": "https://virtual.ifro.edu.br/jiparana/pluginfile.php/50/mod_forum/post/48024/Hor%C3%A1rio%2025%20a%2030%20de%20julho%20%281%29.pdf",
+    "publishedAt": "2022-07-22T17:35:40.000Z",
+    "startsAt": "2022-07-25T04:00:00.000Z",
+    "endsAt": "2022-07-31T03:59:00.000Z"
+  },
+  {
+    "id": "0002",
+    "link": "https://virtual.ifro.edu.br/jiparana/mod/forum/discuss.php?d=19472",
+    "title": "HORÁRIO SEMANAL DO TÉCNICO - 01 A 06/08/2022",
+    "pdfURL": "https://virtual.ifro.edu.br/jiparana/pluginfile.php/50/mod_forum/post/48032/Hor%C3%A1rio%2001%20a%2006%20de%20agosto.pdf",
+    "publishedAt": "2022-07-30T14:16:46.000Z",
+    "startsAt": "2022-08-01T04:00:00.000Z",
+    "endsAt": "2022-08-07T03:59:00.000Z"
+  },
+  {
+    "id": "0003",
+    "link": "https://virtual.ifro.edu.br/jiparana/mod/forum/discuss.php?d=19509",
+    "title": "HORÁRIO SEMANAL DO TÉCNICO - 08 A 13/08/2022",
+    "pdfURL": "https://virtual.ifro.edu.br/jiparana/pluginfile.php/50/mod_forum/post/48108/Hor%C3%A1rio%2008%20a%2013%20de%20agosto.pdf",
+    "publishedAt": "2022-08-05T16:07:35.000Z",
+    "startsAt": "2022-08-08T04:00:00.000Z",
+    "endsAt": "2022-08-14T03:59:00.000Z"
+  }
+]

@@ -31,3 +31,7 @@ export const AppDataSource = new DataSource({
 export const startDatabase = async () => {
   await AppDataSource.initialize();
 };
+
+export const stopDatabase = async () => {
+  await AppDataSource.destroy();
+};
