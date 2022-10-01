@@ -25,7 +25,6 @@ export const syncViews = async () => {
     await jetpack.removeAsync(WEEK_PATH);
 
     const WEEK_CLASSES_PATH = join(WEEK_PATH, "classes");
-    const WEEK_TEACHERS_PATH = join(WEEK_PATH, "teachers");
 
     const classes = await ClassRepository.find({ relations: ["slugs"] });
 
@@ -71,6 +70,8 @@ export const syncViews = async () => {
         relations: ["slugs"],
       })
     );
+
+    const WEEK_TEACHERS_PATH = join(WEEK_PATH, "teachers");
 
     for (const teacher of teachers) {
       const WEEK_TEACHER_PATH = join(WEEK_TEACHERS_PATH, teacher.id);
