@@ -1,4 +1,4 @@
-import {startDatabase, stopDatabase} from "./services/database/AppDataSource";
+import { startDatabase, stopDatabase } from "./services/database/AppDataSource";
 import { syncExtractedWeekTopic } from "./services/syncExtractedWeekTopic/syncExtractedWeekTopic";
 import "./utils/polyfills";
 import { getNewWeekTopics } from "./getNewWeekTopics";
@@ -10,7 +10,11 @@ async function main() {
   const newWeeksTopics = await getNewWeekTopics();
 
   for (let newWeekTopic of newWeeksTopics) {
-    console.log(`[info] new week found: "${newWeekTopic.title}".`);
+    console.log(
+      `[info] new week found | ["${new Date(
+        newWeekTopic.publishedAt
+      ).toISOString()}"] | "${newWeekTopic.title}".`
+    );
     await syncExtractedWeekTopic(newWeekTopic);
   }
 
